@@ -137,7 +137,11 @@ video {
         display: block;
     }
 
+    
+
 }
+
+
 
 .block {
     overflow-y: scroll;
@@ -212,6 +216,13 @@ video {
     transform:  translateY(-40%);
 }
 
+@media screen and (max-width:500px) {
+    .size {
+        padding: 60px;
+    }
+
+}
+
 .heading, .heading2, .heading3, .heading4 {
     opacity: 0;
     transform: scale(1.5);
@@ -268,6 +279,10 @@ button:hover {
 }
 
 #social-btn {
+    -webkit-appearance: none;
+    -webkit-border-radius: none;
+    border-radius: 0;
+    appearance: none;
     opacity: 0.5;
     margin: 0.6rem;
     margin-bottom: 0;
