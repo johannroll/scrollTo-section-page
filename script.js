@@ -15,12 +15,14 @@ function scrollToStart(e) {
 const block = document.querySelector('.block');
 block.addEventListener('scroll', function (){
     let scrollPosition =  block.scrollTop;
-    
     if (scrollPosition > 40) {
         btnTop.style.cssText = 'transition: ease-in 0.3s; display:block';
     } else if (scrollPosition < 30) {
         btnTop.style.display = 'none';
     }
+    if (window.innerWidth < 700) {
+        btnTop.style.display = 'none';
+    } 
 
 });
 
