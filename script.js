@@ -20,7 +20,7 @@ block.addEventListener('scroll', function (){
     } else if (scrollPosition < 30) {
         btnTop.style.display = 'none';
     }
-    if (window.innerWidth < 800) {
+    if (window.innerWidth < 900) {
         btnTop.style.display = 'none';
     } 
 
