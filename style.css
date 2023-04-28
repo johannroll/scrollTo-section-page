@@ -24,6 +24,34 @@ body {
 
 }
 
+#loading {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#content {
+    display: none;
+}
+
+#progress {
+    width : 400px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 35px;
+    text-align: center;
+
+}
+
+#bar {
+    height: 100%;
+    background-color: #1a6577;
+    width: 0%;
+}
+
 .navbar {
     overflow: hidden;
     background: #3d393a;

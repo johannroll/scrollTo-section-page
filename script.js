@@ -1,9 +1,44 @@
+
 const btnTop = document.querySelector('.btnToTop')
 const container4 = document.querySelector('container4');
 const contain4Btn = document.querySelector('li:last-child');
 const menuIcon = document.querySelector('.center');
 const mobileMenu = document.querySelector('.nav-mobile');
-const mobileItems = document.querySelector('.mobile-items')
+const mobileItems = document.querySelector('.mobile-items');
+const video = document.querySelector('#myVideo');
+
+function updateProgressBar(progress) {
+  document.getElementById('bar').style.width = progress + '%';
+}
+
+function showContent() {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+}
+
+video.addEventListener('canplaythrough', function() {
+  // Hide the loading page
+  document.getElementById('loading').style.display = 'none';
+  // Play the video
+  video.autoplay = true;
+  // Show the content
+  showContent();
+});
+
+window.addEventListener('load', function () {
+  let startTime = window.performance.timing.navigationStart;
+      // Get the current time
+      let currentTime = Date.now();
+      // Calculate the progress
+      let progress = (currentTime - startTime) / 10;
+      // Update the progress bar
+      updateProgressBar(progress);
+      // Once the page has fully loaded, hide the loading page and show the content
+      if (progress >= 100) {
+        showContent();
+      }
+});
+
 
 function scrollToStart(e) {
     e.preventDefault();
@@ -96,4 +131,5 @@ const observer4 = new IntersectionObserver(entries => {
 observer4.observe(document.querySelector('.container4'));
 
 btnTop.addEventListener('click', scrollToStart);
+
 
