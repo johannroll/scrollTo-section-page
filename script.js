@@ -7,8 +7,17 @@ const mobileMenu = document.querySelector('.nav-mobile');
 const mobileItems = document.querySelector('.mobile-items');
 const video = document.querySelector('#myVideo');
 
+
+
 function updateProgressBar(progress) {
-  document.getElementById('bar').style.width = progress + '%';
+  var bar = document.getElementById('bar');
+  let h1 = document.getElementById('h1-progress');
+  h1.innerHTML = Math.floor(progress / 10);
+  
+  progress = Math.floor(progress / 10);
+  
+      bar.style.width = progress + '%';
+  
 }
 
 function showContent() {
@@ -16,28 +25,8 @@ function showContent() {
   document.getElementById('content').style.display = 'block';
 }
 
-video.addEventListener('canplaythrough', function() {
-  // Hide the loading page
-  document.getElementById('loading').style.display = 'none';
-  // Play the video
-  video.autoplay = true;
-  // Show the content
-  showContent();
-});
 
-window.addEventListener('load', function () {
-  let startTime = window.performance.timing.navigationStart;
-      // Get the current time
-      let currentTime = Date.now();
-      // Calculate the progress
-      let progress = (currentTime - startTime) / 10;
-      // Update the progress bar
-      updateProgressBar(progress);
-      // Once the page has fully loaded, hide the loading page and show the content
-      if (progress >= 100) {
-        showContent();
-      }
-});
+
 
 
 function scrollToStart(e) {
@@ -74,6 +63,8 @@ menuIcon.addEventListener('click', function () {
     }
     
 }); 
+
+
    
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -88,7 +79,7 @@ const observer = new IntersectionObserver(entries => {
 });
 
 observer.observe(document.querySelector('.container'));
-console.log(observer);
+
 
 const observer2 = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -131,5 +122,36 @@ const observer4 = new IntersectionObserver(entries => {
 observer4.observe(document.querySelector('.container4'));
 
 btnTop.addEventListener('click', scrollToStart);
+
+let startTime =  window.performance.timing.navigationStart; 
+
+const intervalId = setInterval(function() {
+    // Get the current time
+    let currentTime = Date.now();
+   
+    // Calculate the progress
+    let progress = (currentTime - startTime) / 10;
+    
+    // Update the progress bar
+    
+    updateProgressBar(progress); 
+    // window.addEventListener('load', () => {
+      progress = Math.floor(progress / 10);
+      console.log(progress);
+      // Once the page has fully loaded, hide the loading page and show the content
+      if (progress === 100) {
+        showContent();
+        clearInterval(intervalId);
+        // video.addEventListener('canplaythrough', function() {
+        //   // Hide the loading page
+        //   document.getElementById('loading').style.display = 'none';
+        //   // Play the video
+        //   video.autoplay = true;
+        //   // Show the content
+        //   showContent();
+        // });
+      }
+    }, 100);
+// });
 
 
